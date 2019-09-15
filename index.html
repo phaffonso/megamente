@@ -14,17 +14,35 @@
     <div class="placar-time time1">
         <div class="num-placar" id="placar1">0</div>
         <div class="toolbar-placar">
-            <i class="fas fa-plus" id="btnPlacarMais1"></i>
-            <i class="fas fa-minus" id="btnPlacarMenos1"></i>
-            <i class="fas fa-sync" id="btnMudaTime1"></i>
+            <i class="fas fa-plus" onclick="somaPlacar(1)"></i>
+            <i class="fas fa-minus" onclick="subPlacar(1)"></i>
+            <i class="fas fa-sync" onclick="mudaTime(1)"></i>
         </div>
     </div>
     <div class="placar-time time2">
         <div class="num-placar" id="placar2">0</div>  
         <div class="toolbar-placar">
-            <i class="fas fa-plus" id="btnPlacarMais2"></i>
-            <i class="fas fa-minus" id="btnPlacarMenos2"></i>
-            <i class="fas fa-sync" id="btnMudaTime2"></i>
+            <i class="fas fa-plus" onclick="somaPlacar(2)"></i>
+            <i class="fas fa-minus" onclick="subPlacar(2)"></i>
+            <i class="fas fa-sync" onclick="mudaTime(2)"></i>
+        </div>
+    </div>
+</div>
+<div class="placar extra" style="display:none">
+    <div class="placar-time time3">
+        <div class="num-placar" id="placar3">0</div>
+        <div class="toolbar-placar">
+            <i class="fas fa-plus" onclick="somaPlacar(3)"></i>
+            <i class="fas fa-minus" onclick="subPlacar(3)"></i>
+            <i class="fas fa-sync" onclick="mudaTime(3)"></i>
+        </div>
+    </div>
+    <div class="placar-time time4">
+        <div class="num-placar" id="placar4">0</div>  
+        <div class="toolbar-placar">
+            <i class="fas fa-plus" onclick="somaPlacar(4)"></i>
+            <i class="fas fa-minus" onclick="subPlacar(4)"></i>
+            <i class="fas fa-sync" onclick="mudaTime(4)"></i>
         </div>
     </div>
 </div>
@@ -34,13 +52,19 @@
             <div class="cronometro-num">
                 <i id="tempo">10.0</i>
             </div>
-            <div class="cronometro-botoes">
-                <i id="btn10s">10 s</i>
-                <i id="btn60s">1 min</i>
-                <i id="btn120s">2 min</i>
-                <i class="fas fa-play" id="btnIniciaCronometro"></i>
-                <i class="fas fa-pause" id="btnParaCronometro"></i>
+
+        </div>
+
+        <div class="container-circulo">
+            <div class = "circulo">
             </div>
+        </div>
+        <div class="cronometro-botoes">
+            <i id="btn10s">10 s</i>
+            <i id="btn60s">1 min</i>
+            <i id="btn120s">2 min</i>
+            <i class="fas fa-play" id="btnIniciaCronometro"></i>
+            <i class="fas fa-pause" id="btnParaCronometro"></i>
         </div>
     </div>
     
@@ -59,6 +83,105 @@
             <img src="" class="img-identifique" id="imgIdentifique4"/>
         </div>
     </div>
+    
+    <div class="tela cartas">
+    
+    <div class="card-container">
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>4</h1>
+              <h2>Pontos</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>6</h1>
+              <h2>Pontos</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>8</h1>
+              <h2>Pontos</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>10</h1>
+              <h2>+ Torta</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>10</h1>
+              <h2>+ Torta</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>10</h1>
+              <h2>+ Torta na cara</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>10</h1>
+              <h2>+ Torta na cara</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flip-card" onclick="flip(this)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+            </div>
+            <div class="flip-card-back">
+              <h1>10</h1>
+              <h2>+ Torta na cara</h2>
+            </div>
+          </div>
+        </div>
+        
+        <div class="toolbar-cartas">
+            <i class="fas fa-plus" onclick="addCarta()"></i>
+            <i class="fas fa-times" onclick="removeCartas()"></i>
+            <i class="fas fa-sync" onclick="embaralha()"></i>
+        </div>
+    </div>
+    </div>
 </div>
 <div class="toolbar">
     <i class="fas fa-stopwatch" id="mostraCronometro"></i>
@@ -66,6 +189,7 @@
     <i class="far fa-image" id="mostraIdentifique"></i>
     <i class="fas fa-question" id="mostraQuestoes"></i>
     <i class="fas fa-sync" id="mostraRoda"></i>
+    <i class="fas fa-times" onclick="mostra4()"></i>
 </div>
 
 <script src="script.js"></script>

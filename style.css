@@ -3,19 +3,16 @@ body{
     height: 100%;
     width: 100%;
     margin: 0px;
+    overflow: hidden;
 }
 
 .rola{
-    background: linear-gradient(7deg, #fc0 49%, #e0e 51%);
+    background: linear-gradient(7deg, #fbc74c 49%, #e755f1 51%);
 }
 
-.amver{
-background: linear-gradient(7deg, #f00 49%, #ff0 51%);
-}
+.amver{background: linear-gradient(7deg, #f34040 49%, #fbfb2d 51%);}
 
-.azver{
-background: linear-gradient(7deg, #00f 49%, #0f0 51%);
-}
+.azver{background: linear-gradient(7deg, #7a7aca 49%, #35da35 51%);}
 
 .pb{
     background: linear-gradient(7deg, #fff 49%, #666 51%);
@@ -24,6 +21,7 @@ background: linear-gradient(7deg, #00f 49%, #0f0 51%);
 .placar{
     height: 20%;
     width: 100%;
+    margin-bottom: 5px;
 }
 
 .placar-time{
@@ -39,35 +37,41 @@ background: linear-gradient(7deg, #00f 49%, #0f0 51%);
     font-family: monospace;
 }
 
-.time1{
+.time1, .time3{
     text-align: right;
     font-size: 80%;
+    position: relative;
 }
 
-.time1 .toolbar-placar{
+.time1 .toolbar-placar, .time3 .toolbar-placar{
     float:left;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
 }
 
-.time2{
+.time2, .time4{
     text-align: left;
     font-size: 80%;
+    position: relative;
 }
 
-.time2 .toolbar-placar{
-    float:right;
+.time2 .toolbar-placar, .time4 .toolbar-placar{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
 }
 
 .cronometro{
-    height: 80%;
     width: 100%;
 }
 
 .cronometro-quadro{
     position: absolute;
-    top: 40%;
+    margin-top: 20vh;
+    margin-left: 30%;
     height: 20%;
-    left: 40%;
-    width: 20%
+    width: 40%
 
     
 }
@@ -80,25 +84,48 @@ background: linear-gradient(7deg, #00f 49%, #0f0 51%);
 
 .cronometro-botoes{
     text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
 }
 
 .toolbar-identifique{
     text-align: center;
 }
 
+.toolbar-cartas{
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+
 .imgs-identifique{
     text-align: center;
     margin-top: 20px;
 }
 
+.cartas{
+    display: flex;
+}
+
+.card-container{
+    margin: 2vh auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 110vh;
+    margin-top: 5vh;
+}
 
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
+  width: 33vh; /*33vh*/
+  height: 33vh; /*33vh*/
+  border: 5px solid transparent;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -114,6 +141,11 @@ background: linear-gradient(7deg, #00f 49%, #0f0 51%);
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
+  transform: rotateY(30deg);
+  
+}
+
+.flip-card.flipped .flip-card-inner{
   transform: rotateY(180deg);
 }
 
@@ -128,6 +160,9 @@ background: linear-gradient(7deg, #00f 49%, #0f0 51%);
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
   background-color: #bbb;
+  background-image: url("img/desafio.png");
+  background-size: contain;
+  background-position: center; 
   color: black;
 }
 
@@ -138,8 +173,43 @@ background: linear-gradient(7deg, #00f 49%, #0f0 51%);
   transform: rotateY(180deg);
 }
 
-.toolbar {
+.flip-card h1{
+    font-size: 12vh;
+    margin: 20% 20%;
+}
+
+.flip-card h2{
+    font-size: 5vh;
+}
+
+.flip-card p{
+    font-size: 2vw;
+}
+
+.toolbar{
     position: absolute;
     right: 10px;
     bottom: 5px;
+}
+
+.container-circulo{
+    position: relative;
+    top: 20%;
+    height: 30vw;
+    left: 35vw;
+    width: 30vw;
+}
+
+.circulo{
+    position: absolute;
+    border-radius: 50%;
+    height: 4%;
+    width: 4%;
+    background: black;
+    top: 0;
+    left: 48%;
+}
+
+.fora{
+    display: none;
 }
