@@ -7,12 +7,11 @@ var pontos = [0, 0, 0, 0];
 var times = ["", "", "", ""];
 var listaTimes = ["rola", "azver", "amver", "pb"];
 var numCartas = 8;
-var cartas = [20, 20, 20, 30, 30, 30, -40];
-var cartasAdc = [-40, -40];
+var cartas = [20, 20, 20, 30, 30, 30, -40, -40];
 
 $(".tela").hide();
 $(".img-identifique").hide();
-embaralha();
+
 
 function mostraImg(i){
     $(".img-identifique").hide();
@@ -31,6 +30,10 @@ $("#mostraCronometro").click(function(){
 });
 
 $("#mostraCartas").click(function(){
+	$(".fora").removeClass("fora");
+	$(".flipped").removeClass("flipped");
+	$(".removed").removeClass("removed");
+	embaralha();
     $(".tela").hide();
     $(".tela.cartas").show();
 });
@@ -42,16 +45,28 @@ $("#mostraIdentifique").click(function(){
     $(".toolbar-identifique").show();
 });
 
-
-$("#btnIniciaCronometro").click(function(){
+function iniciaCronometro(){
     clearInterval(intervalCron);
     finalContagem = new Date().getTime() + tempo * 1000;
     intervalCron = setInterval(atualizaTempo, 25);
-});
+}
 
-$("#btnParaCronometro").click(function(){
+function paraCronometro(){
     clearInterval(intervalCron);
-});
+}
+
+$("#btnIniciaCronometro").click(iniciaCronometro);
+$("#btnParaCronometro").click(paraCronometro);
+
+$("#btn15s").click(() => setTempo(15));
+$("#btn30s").click(() => setTempo(30));
+$("#btn60s").click(() => setTempo(60));
+$("#btn120s").click(() => setTempo(120));
+
+function setTempo(val){
+	tempo = val;
+	mostraTempo();
+}
 
 function atualizaTempo(){
     tempo = (finalContagem - new Date().getTime())/1000;
@@ -60,6 +75,13 @@ function atualizaTempo(){
         clearInterval(intervalCron);
     }
     mostraTempo();
+}
+
+function mostraTempo(){
+    $("#tempo").text(tempo.toFixed(1));
+    var deg = tempo * 360 / 15;
+    console.log(deg);
+    $(".container-circulo").css("transform", "rotate("+deg+"deg)");
 }
 
 function addCarta(){
@@ -72,8 +94,8 @@ function addCarta(){
 }
 
 function removeCartas(){
-    numCartas -= $(".flipped").length;
-    $(".flipped").remove();
+    //numCartas -= $(".flipped").length;
+    $(".flipped").addClass("removed");
 }
 
 function embaralha(){
@@ -84,9 +106,8 @@ function embaralha(){
         if(cartas[i] > 0){
             card.find('h2').text("pontos");
         }else{
-            console.log("fora");
             card.addClass("fora");
-            card.find('h2').text("+Torta na cara!");
+            card.find('h2').text("+Torta na Cara!");
         }
     }
 }
@@ -110,30 +131,16 @@ function shuffle(array) {
   return array;
 }
 
-$("#btn10s").click(function(){
-    console.log("foi");
-    tempo = 10;
-    mostraTempo();
-});
-
-$("#btn60s").click(function(){
-    tempo = 60;
-    mostraTempo();
-});
-
-$("#btn120s").click(function(){
-    tempo = 120;
-    mostraTempo();
-});
+const incrementoPlacar = 10;
 
 function somaPlacar(i){
-    pontos[i-1] = pontos[i-1] + 5;
+    pontos[i-1] += incrementoPlacar;
     mostraPlacar();
     console.log("pass");
 }
 
 function subPlacar(i){
-    pontos[i-1] -= 5;
+    pontos[i-1] -= incrementoPlacar;
     mostraPlacar();
 }
 
@@ -145,13 +152,7 @@ function mudaTime(i){
 
 function mostra4(){
     $(".placar.extra").show();
-}
-
-function mostraTempo(){
-    $("#tempo").text(tempo.toFixed(1));
-    var deg = tempo *360 / 10;
-    console.log(deg);
-    $(".container-circulo").css("transform", "rotate("+deg+"deg)");
+	$(".container-circulo").addClass("container-circulo-peq");
 }
 
 function mostraPlacar(){
@@ -160,3 +161,46 @@ function mostraPlacar(){
     $("#placar3").text(pontos[2]);
     $("#placar4").text(pontos[3]);
 }
+
+/* Gamepad input */
+
+function gamepadButtonPressed(button){
+	console.log(button);
+	switch(button){
+		case 0: setTempo(60); break;
+		case 1: setTempo(15); break;
+		case 2: setTempo(30); break;
+		case 3: setTempo(120); break;
+		case 4: subPlacar(1); break;
+		case 6: somaPlacar(1); break;
+		case 5: subPlacar(2); break;
+		case 7: somaPlacar(2); break;
+		case 8: paraCronometro(); break;
+		case 9: iniciaCronometro(); break;
+	}
+}
+
+var buttonStates;
+
+function pollGamepad(){
+    for (const pad of navigator.getGamepads()) {
+      if(pad != null){
+		for(var i = 0; i < pad.buttons.length; i++){
+			if(pad.buttons[i].pressed){
+				if(buttonStates == null || !(buttonStates[i].pressed)){
+					gamepadButtonPressed(i);
+				}					
+			}
+		}
+		buttonStates = pad.buttons;
+	  }
+    }
+}
+
+window.addEventListener("gamepadconnected", (event) => {
+  console.log("A gamepad connected:");
+  interval = window.setInterval(pollGamepad, 40);
+  console.log(event.gamepad);
+});
+
+

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link href="fontawesome/css/all.css" rel="stylesheet">
     <script src="jquery-3.4.1.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"> </script>
 </head>
 
 <body>
@@ -47,20 +47,26 @@
     </div>
 </div>
 <div class="main">
-    <div class="tela cronometro">
-        <div class="cronometro-quadro">
+    <div class="tela cronometro">	
+
+		<div class="risco-estatico"></div>
+		
+		<div class="cronometro-quadro">
             <div class="cronometro-num">
                 <i id="tempo">10.0</i>
             </div>
-
-        </div>
-
-        <div class="container-circulo">
-            <div class = "circulo">
+        </div>		
+		
+		<div class="container-circulo">
+			<div class = "risco-cronometro">
             </div>
+            <div class = "circulo">
+            </div>	
         </div>
+
         <div class="cronometro-botoes">
-            <i id="btn10s">10 s</i>
+            <i id="btn15s">15 s</i>
+			<i id="btn30s">30 s</i>
             <i id="btn60s">1 min</i>
             <i id="btn120s">2 min</i>
             <i class="fas fa-play" id="btnIniciaCronometro"></i>
@@ -178,7 +184,6 @@
         <div class="toolbar-cartas">
             <i class="fas fa-plus" onclick="addCarta()"></i>
             <i class="fas fa-times" onclick="removeCartas()"></i>
-            <i class="fas fa-sync" onclick="embaralha()"></i>
         </div>
     </div>
     </div>
