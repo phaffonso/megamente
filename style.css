@@ -111,9 +111,9 @@ body{
 .risco-cronometro{
     position: absolute;
     /*border-radius: 50%;*/
-    height: 15%;
+    height: 50%;
     width: 0.4%;
-    background: black;
+    background: #fcc;
     left: 49.8%;
 }
 
@@ -168,6 +168,7 @@ body{
   height: 30vh; /*33vh*/
   border: 5px solid transparent;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  transition: width 1s, height 1s, border-width 1s;
 }
 
 /* This container is needed to position the front and back side */
@@ -238,5 +239,7 @@ body{
     display: none;
 }
 .removed{
-    display: none;
+    width: 0vh;
+	height: 0vh;
+	border-width: 0px;
 }

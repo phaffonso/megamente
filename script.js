@@ -11,7 +11,7 @@ var cartas = [20, 20, 20, 30, 30, 30, -40, -40];
 
 $(".tela").hide();
 $(".img-identifique").hide();
-
+embaralha();
 
 function mostraImg(i){
     $(".img-identifique").hide();
@@ -30,10 +30,10 @@ $("#mostraCronometro").click(function(){
 });
 
 $("#mostraCartas").click(function(){
-	$(".fora").removeClass("fora");
+	/*$(".fora").removeClass("fora");
 	$(".flipped").removeClass("flipped");
 	$(".removed").removeClass("removed");
-	embaralha();
+	embaralha();*/
     $(".tela").hide();
     $(".tela.cartas").show();
 });
@@ -55,14 +55,6 @@ function paraCronometro(){
     clearInterval(intervalCron);
 }
 
-$("#btnIniciaCronometro").click(iniciaCronometro);
-$("#btnParaCronometro").click(paraCronometro);
-
-$("#btn15s").click(() => setTempo(15));
-$("#btn30s").click(() => setTempo(30));
-$("#btn60s").click(() => setTempo(60));
-$("#btn120s").click(() => setTempo(120));
-
 function setTempo(val){
 	tempo = val;
 	mostraTempo();
@@ -79,7 +71,7 @@ function atualizaTempo(){
 
 function mostraTempo(){
     $("#tempo").text(tempo.toFixed(1));
-    var deg = tempo * 360 / 15;
+    var deg = tempo * 360 / 30;
     console.log(deg);
     $(".container-circulo").css("transform", "rotate("+deg+"deg)");
 }
