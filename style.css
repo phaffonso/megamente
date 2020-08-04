@@ -154,10 +154,11 @@ body{
 .card-container{
     margin: 2vh auto;
     display: flex;
+	align-items: center;
+	height: 65vh;
     flex-wrap: wrap;
     justify-content: space-around;
     max-width: 110vh;
-    margin-top: 5vh;
 }
 
 
@@ -217,12 +218,14 @@ body{
 
 .flip-card h1{
     font-size: 12vh;
-    margin: 10% 20%;
+    margin: 8% 20%;
+	transition: font-size 1s;
 }
 
 .flip-card h2{
     font-size: 5vh;
-	margin: 5% 10%;
+	margin: 4% 10%;
+	transition: font-size 1s;
 }
 
 .flip-card p{
@@ -239,7 +242,11 @@ body{
     display: none;
 }
 .removed{
-    width: 0vh;
-	height: 0vh;
-	border-width: 0px;
+    width: 10px;
+	height: 10px;
+	border-width: 15vh;
+}
+
+.removed h1, .removed h2{
+	font-size: 1vh;
 }

@@ -45,6 +45,23 @@ $("#mostraIdentifique").click(function(){
     $(".toolbar-identifique").show();
 });
 
+var placarVisivel = false;
+$("#mostra4").click(function(){
+	placarVisivel = !placarVisivel;
+    if(placarVisivel){
+		$(".placar.extra").show()
+		$(".container-circulo").addClass("container-circulo-peq");
+	}else{
+		$(".placar.extra").hide()
+		$(".container-circulo").removeClass("container-circulo-peq");
+	}
+})
+
+$("#mostraRoda").click(function(){
+	$(".tela").hide();
+	$(".tela.roda").show();
+})
+
 function iniciaCronometro(){
     clearInterval(intervalCron);
     finalContagem = new Date().getTime() + tempo * 1000;
@@ -77,17 +94,12 @@ function mostraTempo(){
 }
 
 function addCarta(){
-    /*numCartas ++;
-    if(cartasAdc.length > 0){
-        cartas.push(cartasAdc.shift());
-    }
-    $(".card-container div:nth-child("+numCartas+")").show();*/
     $(".fora").removeClass("fora");
 }
 
 function removeCartas(){
-    //numCartas -= $(".flipped").length;
     $(".flipped").addClass("removed");
+	setTimeout(()=>{$(".removed").hide()}, 1000);
 }
 
 function embaralha(){
@@ -142,16 +154,30 @@ function mudaTime(i){
     $(".time"+i).addClass(listaTimes[times[i-1]]);
 };
 
-function mostra4(){
-    $(".placar.extra").show();
-	$(".container-circulo").addClass("container-circulo-peq");
-}
 
 function mostraPlacar(){
     $("#placar1").text(pontos[0]);
     $("#placar2").text(pontos[1]);
     $("#placar3").text(pontos[2]);
     $("#placar4").text(pontos[3]);
+}
+
+function rodaARoda(){
+	var x = 3*360; //minimo de voltas
+	var y = 12*360; // máximo de voltas
+
+	var deg = Math.floor(Math.random() * (x - y)) + y;
+	// impedir que caia exatamente entre dois setores
+	if(deg % 45 == 0)
+		deg++;
+
+	document.getElementById('box').style.transform = "rotate("+deg+"deg)";
+
+	var element = document.getElementById('mainbox');
+	element.classList.remove('animate');
+	setTimeout(function(){
+		element.classList.add('animate');
+	}, 5000); //5000 = 5 second
 }
 
 /* Gamepad input */
